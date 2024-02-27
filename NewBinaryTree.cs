@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using BinarySearchTree;
@@ -8,8 +9,7 @@ using Lab_10lib;
 
 namespace Lab13
 {
-    public class NewBinaryTree<T> : BinaryTree<T>
-        where T : IComparable, ICloneable
+    public class NewBinaryTree<T> : BinaryTree<Goods>
     {
         public string Name { get; } = "NewBinaryTree";
 
@@ -25,37 +25,57 @@ namespace Lab13
             CollectionReferenceChanged?.Invoke(source, e);
         }
 
-        public override void Add(T product)
+        public override void Add(Goods product)
         {
             OnCollectionCountChanged(this, new CollectionHandlerEventArgs(Name, "Added", product));
             base.Add(product);
         }
 
-        public override void Add(IEnumerable<T> collection)
+        public override void Add(IEnumerable<Goods> collection)
         {
-            OnCollectionCountChanged(this, new CollectionHandlerEventArgs(Name, "Added", collection));
-            base.Add(collection);
+            foreach (var value in collection)
+                Add(value);
         }
 
-        public override bool Remove(T data)
+
+        private bool CheckIndex(int index)
+        {
+            if (index > this.Count - 1)
+                return false;
+            else if (index < 0)
+                return false;
+            return true;
+        }
+
+        public bool Remove(int index)
+        {
+            if(!CheckIndex(index)) 
+                return false;
+
+            var findElem = this[index];
+            Remove(findElem);
+            return true;
+        }
+
+        public override bool Remove(Goods data)
         {
             OnCollectionCountChanged(this, new CollectionHandlerEventArgs(Name, "Removed", base.Find(data)));
             return base.Remove(data);
         }
-        public virtual T this[int index]
+        public virtual Goods this[int index]
         {
             get 
             {
-                if (index > this.Count - 1)
-                    throw new IndexOutOfRangeException("Index greater than possible!");
-                else if (index < 0)
-                    throw new IndexOutOfRangeException("Index lower than possible!");
+                if(!CheckIndex(index))
+                {
+                    throw new IndexOutOfRangeException("Index lower/bigger than possible!");
+                }
                 else
                 {
-                    T outElem = default!;
+                    Goods outElem = default!;
                     int count = 0;
 
-                    foreach (T item in this)
+                    foreach (Goods item in this)
                     {
                         outElem = item;
                         if (count == index)
@@ -68,26 +88,17 @@ namespace Lab13
             }
             set 
             {
-                OnCollectionReferenceChanged(this, new CollectionHandlerEventArgs(Name, "changed", this[index]));
-                if (index > this.Count - 1)
-                    throw new IndexOutOfRangeException("Index greater than possible!");
-                else if (index < 0)
-                    throw new IndexOutOfRangeException("Index lower than possible!");
+                if(!CheckIndex(index))
+                {
+                    throw new IndexOutOfRangeException("Index lower/bigger than possible!");
+                }
                 else
                 {
-                    T outElem = default!;
-                    int count = 0;
+                    var findItem = this[index];
+                    OnCollectionReferenceChanged(this, new CollectionHandlerEventArgs(Name, "changed", value));
 
-                    foreach (T item in this)
-                    {
-                        outElem = item;
-                        if (count == index)
-                            break;
-                        count++;
-                    }
-
-                    var inElem = this.FindNode(outElem, this.RootNode);
-                    inElem.Data = value;
+                    var inElem = this.FindNode(findItem, this.RootNode);
+                    inElem.Data.Name = value.Name;
 
                 }
             }

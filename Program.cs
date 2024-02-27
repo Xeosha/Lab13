@@ -15,7 +15,7 @@ namespace Lab13
             tree1.CollectionCountChanged += new CollectionHandler(journal1.CollectionCountChanged);
             tree1.CollectionReferenceChanged += new CollectionHandler(journal1.CollectionReferenceChanged);
 
-            tree2.CollectionReferenceChanged += new CollectionHandler(journal2.CollectionReferenceChanged);
+            tree1.CollectionReferenceChanged += new CollectionHandler(journal2.CollectionReferenceChanged);
             tree2.CollectionReferenceChanged += new CollectionHandler(journal2.CollectionReferenceChanged);
 
             var products = new Goods[5];
@@ -29,15 +29,27 @@ namespace Lab13
             tree2.Add(products);
 
             tree1.Remove(products[4]);
+            tree1.Remove(0);
             tree2.Remove(products[4]);
+            tree2.Remove(0);
 
             var product = new Goods("0", 0, 0);
 
             tree1[0] = product;
             tree2[0] = product;
 
+           
+
 
             Console.WriteLine(journal1 + "\n\n" + journal2); 
+          
+
+            Console.WriteLine("\tПервое дерево: ");
+            tree1.PrintTree();
+            Console.WriteLine();
+            Console.WriteLine("\tВторое дерево: ");
+            tree2.PrintTree();
+
             Console.ReadKey(true);
         }
     }

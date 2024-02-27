@@ -13,13 +13,13 @@ namespace Lab13
     {
         public string NameOfCollection { get; set; }
         public string TypeOfChange { get; set; }
-        public object ChaingedObj { get; }
+        public Goods ChaingedObj { get; }
 
-        public CollectionHandlerEventArgs(string NameOfCollection, string TypeOfChange, object? ChaingedObj)
+        public CollectionHandlerEventArgs(string NameOfCollection, string TypeOfChange, Goods? ChaingedObj)
         {
             this.NameOfCollection = NameOfCollection;
             this.TypeOfChange = TypeOfChange;
-            this.ChaingedObj = ChaingedObj ?? " ";
+            this.ChaingedObj = ChaingedObj ?? default!;
         }
 
         public override string ToString() => $"Name of collection = {NameOfCollection}, Type of change = {TypeOfChange}";
