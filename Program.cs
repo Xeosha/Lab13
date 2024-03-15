@@ -6,8 +6,8 @@ namespace Lab13
     {
         public static void Main()
         {
-            var tree1 = new NewBinaryTree<Goods>();
-            var tree2 = new NewBinaryTree<Goods>();
+            var tree1 = new NewBinaryTree<Goods>(new CustomComparer());
+            var tree2 = new NewBinaryTree<Goods>(new CustomComparer());
 
             var journal1 = new Journal();
             var journal2 = new Journal();
@@ -25,6 +25,12 @@ namespace Lab13
             products[3] = new Product();
             products[4] = new Goods("1", 1, 1);
 
+            Console.WriteLine("\tСписок добавляемых продуктов:");
+            foreach(var prdct in products)
+                Console.WriteLine(prdct);
+            
+            Console.WriteLine();
+
             tree1.Add(products);
             tree2.Add(products);
 
@@ -33,14 +39,12 @@ namespace Lab13
             tree2.Remove(products[4]);
             tree2.Remove(0);
 
-            var product = new Goods("0", 0, 0);
+            var product = new Goods("Новый продукт", 0, 0);
 
             tree1[0] = product;
             tree2[0] = product;
 
-           
-
-
+     
             Console.WriteLine(journal1 + "\n\n" + journal2); 
           
 
@@ -51,6 +55,7 @@ namespace Lab13
             tree2.PrintTree();
 
             Console.ReadKey(true);
+            
         }
     }
 }

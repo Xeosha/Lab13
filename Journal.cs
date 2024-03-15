@@ -23,8 +23,7 @@ namespace Lab13
             public override string ToString()
             {
                 string outString = "";
-                outString += "\t<<--------->>" + '\n'
-                    + "Collection name: " + Name + '\n'
+                outString += "Collection name: " + Name + '\n'
                     + "Collection change type: " + CollectionChangeType + '\n'
                     + "Object information: " + ObjectInformation + '\n'
                     + "\t<<--------->>\n" + '\n';
@@ -56,7 +55,7 @@ namespace Lab13
         public override string ToString()
         {
             string outString = "";
-            outString += "\t\t<<JournalStart>>" + '\n';
+            outString += "\t\t<<JournalStart>>" + "\n\n";
 
             foreach (JournalEntry je in journalList)
                 outString += je.ToString();

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lab13.NewBinaryTree&lt;T&gt;">
+    <Position X="10.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAKAAAAAAAAAAAIACAAABAUAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>NewBinaryTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab13.Journal">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Lab13.Journal.JournalEntry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Journal.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Journal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab13.CollectionHandlerEventArgs">
+    <Position X="1.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAgAg=</HashCode>
+      <FileName>CollectionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="Lab13.CollectionHandler">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CollectionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

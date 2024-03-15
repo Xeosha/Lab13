@@ -11,11 +11,15 @@ namespace Lab13
 {
     public class NewBinaryTree<T> : BinaryTree<Goods>
     {
-        public string Name { get; } = "NewBinaryTree";
+        public string Name { get; private set; } = "NewBinaryTree";
 
         public event CollectionHandler? CollectionCountChanged;
         public event CollectionHandler? CollectionReferenceChanged;
-        
+
+        //public event EventHandler<CollectionHandlerEventArgs> CollectionChanged;
+
+        public NewBinaryTree(IComparer<Goods>? comparer = null) : base(comparer) { }
+
         public virtual void OnCollectionCountChanged(object source, CollectionHandlerEventArgs e)
         {
             CollectionCountChanged?.Invoke(source, e);
@@ -97,8 +101,7 @@ namespace Lab13
                     var findItem = this[index];
                     OnCollectionReferenceChanged(this, new CollectionHandlerEventArgs(Name, "changed", value));
 
-                    var inElem = this.FindNode(findItem, this.RootNode);
-                    inElem.Data.Name = value.Name;
+                    findItem.Name = value.Name;
 
                 }
             }
